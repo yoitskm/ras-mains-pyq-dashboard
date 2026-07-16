@@ -2,12 +2,35 @@
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>RAS Mains — Syllabus Coverage vs Previous Years</title>
+<script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('theme')||'light');}catch(e){}</script>
 <style>
-  :root{--bg:#0e1216;--card:#171d24;--card2:#1e262f;--line:#2a3340;--ink:#e6edf3;--muted:#8b97a5;
-        --accent:#e0a458;--cov:#7ee2a8;--weak:#e6d071;--gap:#f0889a;}
+
+  :root{
+    /* LIGHT (default) */
+    --bg:#f4f6f9; --card:#ffffff; --card2:#eef1f5; --line:#dce1e8; --ink:#1b2430;
+    --muted:#5b6675; --accent:#a1670f; --accent2:#215d94; --good:#12925a;
+    --cov:#12925a; --weak:#9c6f0e; --gap:#cf4256; --new:#cf4256; --rec:#12925a; --under:#9c6f0e;
+    --shadow:0 1px 3px rgba(20,30,45,.08);
+    --headbg:linear-gradient(180deg,#ffffff,#eef2f7);
+  }
+  :root[data-theme="dark"]{
+    --bg:#0e1216; --card:#171d24; --card2:#1e262f; --line:#2a3340; --ink:#e6edf3;
+    --muted:#8b97a5; --accent:#e0a458; --accent2:#5b9bd5; --good:#7ee2a8;
+    --cov:#7ee2a8; --weak:#e6d071; --gap:#f0889a; --new:#f0a0a0; --rec:#7ee2a8; --under:#e6d071;
+    --shadow:none;
+    --headbg:linear-gradient(180deg,#141b22,#0e1216);
+  }
+  html{color-scheme:light dark;}
+  header{position:relative;}
+  .card,.section,.q,.kpi{box-shadow:var(--shadow);}
+  .theme-btn{position:absolute;top:20px;right:26px;background:var(--card2);color:var(--ink);
+    border:1px solid var(--line);border-radius:9px;padding:6px 11px;font-size:15px;line-height:1;
+    cursor:pointer;transition:border-color .15s;}
+  .theme-btn:hover{border-color:var(--accent);}
+
   *{box-sizing:border-box;} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
      background:var(--bg);color:var(--ink);line-height:1.55;}
-  header{padding:26px 34px 18px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#141b22,#0e1216);}
+  header{padding:26px 34px 18px;border-bottom:1px solid var(--line);background:var(--headbg);}
   h1{margin:0 0 5px;font-size:23px;} header p{margin:0;color:var(--muted);font-size:13px;}
   header a{color:var(--accent);}
   main{padding:22px 34px 60px;max-width:1180px;margin:0 auto;}
@@ -26,7 +49,7 @@
   .section{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:14px;overflow:hidden;}
   .sec-head{padding:13px 16px;cursor:pointer;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
   .sec-head:hover{background:#1c242d;}
-  .pill{font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:20px;background:#22303f;color:#9fc4e8;}
+  .pill{font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:20px;background:rgba(33,93,148,.14);color:var(--accent2);}
   .sec-title{font-weight:600;font-size:14px;flex:1;min-width:220px;}
   .mini{height:9px;width:150px;border-radius:5px;overflow:hidden;display:flex;border:1px solid var(--line);}
   .mini span{display:block;height:100%;}
@@ -35,7 +58,7 @@
   .b-row{border-top:1px solid var(--line);padding:11px 0;}
   .b-top{display:flex;gap:10px;align-items:flex-start;}
   .tag{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;text-transform:uppercase;letter-spacing:.03em;white-space:nowrap;margin-top:2px;}
-  .t-covered{background:#1d3a2b;color:var(--cov);} .t-weak{background:#3a3a24;color:var(--weak);} .t-gap{background:#4a2630;color:var(--gap);}
+  .t-covered{background:rgba(18,146,90,.15);color:var(--cov);} .t-weak{background:rgba(156,111,14,.17);color:var(--weak);} .t-gap{background:rgba(207,66,86,.15);color:var(--gap);}
   .b-text{flex:1;font-size:13.5px;} .b-meta{color:var(--muted);font-size:11.5px;margin-top:3px;}
   .b-meta .yr{border:1px solid var(--line);border-radius:5px;padding:1px 6px;margin-right:4px;color:var(--cov);}
   .toggle{color:var(--accent);font-size:11.5px;cursor:pointer;display:inline-block;margin-top:6px;}
@@ -48,6 +71,7 @@
 </style></head>
 <body>
 <header>
+  <button id="themeBtn" class="theme-btn" title="Toggle light / dark" aria-label="Toggle theme">🌙</button>
   <h1>RAS Mains — Syllabus Coverage vs Previous Years</h1>
   <p>New RPSC syllabus (dated <b id="hDate"></b>) mapped against <b id="hPool"></b> past questions —
      see what previous years <b>already tested</b> and what is a <b>gap / newly added</b>.
@@ -196,5 +220,19 @@ document.querySelectorAll('#segStatus button').forEach(b=>b.onclick=()=>{
   document.querySelectorAll('#segStatus button').forEach(x=>x.classList.remove('on'));
   b.classList.add('on'); fStatus=b.dataset.s; render();});
 render();
+
+(function(){
+  var btn=document.getElementById('themeBtn');
+  function icon(){var d=document.documentElement.getAttribute('data-theme')==='dark';btn.textContent=d?'\u2600\ufe0f':'\ud83c\udf19';}
+  icon();
+  btn.onclick=function(){
+    var d=document.documentElement.getAttribute('data-theme')==='dark';
+    var nt=d?'light':'dark';
+    document.documentElement.setAttribute('data-theme',nt);
+    try{localStorage.setItem('theme',nt);}catch(e){}
+    icon(); if(window.__onTheme) window.__onTheme();
+  };
+})();
+
 </script>
 </body></html>

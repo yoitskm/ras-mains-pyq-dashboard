@@ -2,16 +2,39 @@
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>RAS Mains — Expected Questions (Science)</title>
+<script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('theme')||'light');}catch(e){}</script>
 <style>
-  :root{--bg:#0e1216;--card:#171d24;--card2:#1e262f;--line:#2a3340;--ink:#e6edf3;--muted:#8b97a5;
-        --accent:#e0a458;--accent2:#5b9bd5;--new:#f0a0a0;--rec:#7ee2a8;--under:#e6d071;}
+
+  :root{
+    /* LIGHT (default) */
+    --bg:#f4f6f9; --card:#ffffff; --card2:#eef1f5; --line:#dce1e8; --ink:#1b2430;
+    --muted:#5b6675; --accent:#a1670f; --accent2:#215d94; --good:#12925a;
+    --cov:#12925a; --weak:#9c6f0e; --gap:#cf4256; --new:#cf4256; --rec:#12925a; --under:#9c6f0e;
+    --shadow:0 1px 3px rgba(20,30,45,.08);
+    --headbg:linear-gradient(180deg,#ffffff,#eef2f7);
+  }
+  :root[data-theme="dark"]{
+    --bg:#0e1216; --card:#171d24; --card2:#1e262f; --line:#2a3340; --ink:#e6edf3;
+    --muted:#8b97a5; --accent:#e0a458; --accent2:#5b9bd5; --good:#7ee2a8;
+    --cov:#7ee2a8; --weak:#e6d071; --gap:#f0889a; --new:#f0a0a0; --rec:#7ee2a8; --under:#e6d071;
+    --shadow:none;
+    --headbg:linear-gradient(180deg,#141b22,#0e1216);
+  }
+  html{color-scheme:light dark;}
+  header{position:relative;}
+  .card,.section,.q,.kpi{box-shadow:var(--shadow);}
+  .theme-btn{position:absolute;top:20px;right:26px;background:var(--card2);color:var(--ink);
+    border:1px solid var(--line);border-radius:9px;padding:6px 11px;font-size:15px;line-height:1;
+    cursor:pointer;transition:border-color .15s;}
+  .theme-btn:hover{border-color:var(--accent);}
+
   *{box-sizing:border-box;} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
      background:var(--bg);color:var(--ink);line-height:1.55;}
-  header{padding:26px 34px 18px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#141b22,#0e1216);}
+  header{padding:26px 34px 18px;border-bottom:1px solid var(--line);background:var(--headbg);}
   h1{margin:0 0 5px;font-size:23px;} header p{margin:0;color:var(--muted);font-size:13px;}
   header a{color:var(--accent2);}
   main{padding:22px 34px 60px;max-width:1120px;margin:0 auto;}
-  .disclaimer{background:#2a2312;border:1px solid #4a3c1a;color:#e6d071;border-radius:10px;padding:11px 14px;font-size:12.5px;margin-bottom:18px;}
+  .disclaimer{background:rgba(156,111,14,.13);border:1px solid rgba(156,111,14,.35);color:var(--under);border-radius:10px;padding:11px 14px;font-size:12.5px;margin-bottom:18px;}
   .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:18px;}
   .kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
   .kpi .n{font-size:25px;font-weight:700;color:var(--accent);} .kpi .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;}
@@ -21,10 +44,10 @@
   .q{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:15px 17px;margin-bottom:12px;}
   .q-top{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin-bottom:9px;}
   .chip{font-size:10.5px;font-weight:700;padding:2px 9px;border-radius:20px;text-transform:uppercase;letter-spacing:.03em;}
-  .c-subj{background:#22303f;color:#9fc4e8;} .c-topic{background:#20283a;color:#c4b7e8;}
-  .c-marks{background:#2a3340;color:#e6edf3;}
-  .c-new{background:#4a2630;color:var(--new);} .c-rec{background:#1d3a2b;color:var(--rec);} .c-under{background:#3a3a24;color:var(--under);}
-  .c-hi{background:#4a2630;color:#f0a0a0;} .c-med{background:#2a3340;color:#9fc4e8;}
+  .c-subj{background:rgba(33,93,148,.14);color:var(--accent2);} .c-topic{background:rgba(139,87,204,.15);color:#8b57cc;}
+  .c-marks{background:rgba(120,132,148,.16);color:var(--ink);}
+  .c-new{background:rgba(207,66,86,.15);color:var(--new);} .c-rec{background:rgba(18,146,90,.15);color:var(--rec);} .c-under{background:rgba(156,111,14,.17);color:var(--under);}
+  .c-hi{background:rgba(207,66,86,.15);color:var(--gap);} .c-med{background:rgba(33,93,148,.14);color:var(--accent2);}
   .q-text{font-size:14.5px;font-weight:500;margin-bottom:8px;}
   .why{color:var(--muted);font-size:12.5px;border-left:2px solid var(--line);padding-left:10px;}
   .why b{color:var(--accent);}
@@ -33,6 +56,7 @@
 </style></head>
 <body>
 <header>
+  <button id="themeBtn" class="theme-btn" title="Toggle light / dark" aria-label="Toggle theme">🌙</button>
   <h1>RAS Mains — Expected Questions · Science &amp; Technology</h1>
   <p>Model-predicted questions, grounded in past-paper style and new-syllabus additions.
      <a href="index.html" class="navlink">← Pattern dashboard</a> ·
@@ -99,5 +123,19 @@ function render(){
 [fSubject,fBasis,fMarks,fPriority].forEach(el=>el.onchange=render);
 fSearch.oninput=render;
 render();
+
+(function(){
+  var btn=document.getElementById('themeBtn');
+  function icon(){var d=document.documentElement.getAttribute('data-theme')==='dark';btn.textContent=d?'\u2600\ufe0f':'\ud83c\udf19';}
+  icon();
+  btn.onclick=function(){
+    var d=document.documentElement.getAttribute('data-theme')==='dark';
+    var nt=d?'light':'dark';
+    document.documentElement.setAttribute('data-theme',nt);
+    try{localStorage.setItem('theme',nt);}catch(e){}
+    icon(); if(window.__onTheme) window.__onTheme();
+  };
+})();
+
 </script>
 </body></html>
